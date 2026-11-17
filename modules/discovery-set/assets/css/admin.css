@@ -1,0 +1,248 @@
+/* Discovery set — admin */
+.ads-wrap .ads-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	padding: 4px 20px 16px;
+	margin: 16px 0;
+	max-width: 1100px;
+}
+
+.ads-wrap .ads-card h2 {
+	margin-top: 16px;
+}
+
+.ads-title-form {
+	display: inline-block;
+	margin-inline-start: 8px;
+	vertical-align: middle;
+}
+
+.ads-inline-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+}
+
+.ads-volumes-settings td,
+.ads-volumes-settings th {
+	vertical-align: middle;
+}
+
+.ads-status li::before {
+	display: inline-block;
+	width: 1.4em;
+	font-weight: 700;
+}
+
+.ads-status li.is-ok::before {
+	content: "✓";
+	color: #008a20;
+}
+
+.ads-status li.is-bad::before {
+	content: "✗";
+	color: #d63638;
+}
+
+.ads-ok {
+	color: #008a20;
+	font-weight: 600;
+}
+
+.ads-bad {
+	color: #d63638;
+	font-weight: 600;
+}
+
+.ads-muted {
+	color: #646970;
+}
+
+.ads-volume-summary {
+	margin: 0;
+}
+
+.ads-volume-summary li {
+	margin: 0 0 4px;
+}
+
+/* Product data panel */
+#woocommerce-product-data ul.wc-tabs li.ads_set_options a::before {
+	content: "\f509";
+}
+
+.ads-panel .options_group {
+	padding: 0 12px 12px;
+}
+
+/* WooCommerce floats every label of a product data panel into a 150px gutter; undo it here. */
+#woocommerce-product-data .ads-panel label,
+#woocommerce-product-data .ads-panel input[type="checkbox"],
+#woocommerce-product-data .ads-panel input[type="radio"] {
+	float: none;
+	width: auto;
+	margin: 0;
+}
+
+#woocommerce-product-data .ads-panel label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+#woocommerce-product-data .ads-panel input.ads-fixed-input {
+	float: none;
+	width: 140px;
+}
+
+.ads-panel__title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 12px 0 6px;
+	font-size: 13px;
+}
+
+.ads-panel__note {
+	color: #646970;
+	margin: 6px 0;
+}
+
+.ads-slots {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px 16px;
+}
+
+.ads-slot {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ads-slot__num {
+	flex: 0 0 24px;
+	height: 24px;
+	line-height: 24px;
+	border-radius: 50%;
+	background: #009879;
+	color: #fff;
+	text-align: center;
+	font-weight: 700;
+}
+
+.ads-slot .select2-container {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.ads-panel .ads-volumes-table {
+	max-width: 520px;
+}
+
+.ads-panel .ads-volumes-table input.short {
+	width: 140px;
+	float: none;
+}
+
+#woocommerce-product-data .ads-panel .ads-mode label {
+	display: flex;
+	margin: 4px 0;
+}
+
+.ads-preview__scroll {
+	overflow-x: auto;
+}
+
+.ads-preview__table th,
+.ads-preview__table td {
+	white-space: nowrap;
+	font-size: 12px;
+}
+
+.ads-preview__error {
+	color: #d63638;
+	font-weight: 600;
+}
+
+/* Order screen */
+.ads-order-box {
+	margin-top: 8px;
+	padding: 8px 12px;
+	border-inline-start: 3px solid #009879;
+	background: #f6f7f7;
+	font-size: 12px;
+}
+
+.ads-order-box ul {
+	margin: 6px 0;
+}
+
+.ads-order-box li {
+	margin: 2px 0;
+}
+
+@media (max-width: 782px) {
+	.ads-slots {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.ads-panel__fixed {
+	margin: 6px 0 10px;
+	padding: 8px 12px;
+	background: #f0f6f4;
+	border-radius: 6px;
+	font-weight: 600;
+}
+
+/* «عطرهای ست اختصاصی» */
+.ads-perfumes-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin: 16px 0 12px;
+}
+
+.ads-perfumes-count {
+	color: #646970;
+	margin-inline-start: auto;
+}
+
+.ads-perfumes-table .ads-perfume-name {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ads-perfumes-table .ads-perfume-name img {
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+.ads-perfumes-table tr.is-disabled .ads-perfume-name {
+	opacity: .6;
+}
+
+.ads-perfumes-table td,
+.ads-perfumes-table th {
+	vertical-align: middle;
+}
+
+.ads-perfumes-table .ads-bad {
+	margin: 4px 0 0;
+	font-size: 12px;
+}
+
+.ads-good {
+	color: #009879;
+}
+
+.ads-builder-option .description strong {
+	color: #b32d2e;
+}

@@ -1,0 +1,268 @@
+/* سوالات متداول محصول تکپینو */
+
+/*
+ * No script: each item is a <details>; items sharing a `name` close each other natively.
+ * The open/close height animates where the browser supports ::details-content and
+ * interpolate-size; elsewhere the answer simply fades in.
+ */
+
+.tpfq {
+	--tpfq-accent: var(--e-global-color-accent, #009879);
+	--tpfq-deep: #315449;
+	--tpfq-gold: #d7b56a;
+	--tpfq-ink: #1d1d1b;
+	--tpfq-muted: var(--e-global-color-text, #7a7a7a);
+
+	--tpfq-title: var(--tpfq-ink);
+	--tpfq-sub: var(--tpfq-muted);
+	--tpfq-head-gap: 20px;
+
+	--tpfq-card-bg: #fff;
+	--tpfq-card-line: #eef2f9;
+	--tpfq-card-radius: 34px;
+	--tpfq-card-pad: 24px;
+
+	--tpfq-item-bg: #f9fafc;
+	--tpfq-item-bg-open: #fff;
+	--tpfq-item-line: #f1f1f1;
+	--tpfq-item-radius: 16px;
+	--tpfq-gap: 12px;
+	--tpfq-q: #434343;
+	--tpfq-a: var(--tpfq-muted);
+
+	--tpfq-cta-bg: var(--e-global-color-secondary, #fff4e0);
+	--tpfq-cta-line: color-mix(in srgb, var(--tpfq-gold) 30%, transparent);
+	--tpfq-cta-icon-bg: var(--tpfq-deep);
+	--tpfq-cta-icon: var(--e-global-color-primary, #e6c498);
+	--tpfq-cta-title: var(--tpfq-ink);
+	--tpfq-btn-bg: var(--tpfq-accent);
+	--tpfq-btn-bg-h: var(--tpfq-deep);
+	--tpfq-btn: #fff;
+
+	interpolate-size: allow-keywords;
+	font-family: inherit;
+}
+.tpfq,
+.tpfq * { box-sizing: border-box; }
+.tpfq-svg { display: block; width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Heading ---------- */
+
+.tpfq-head { margin-bottom: var(--tpfq-head-gap); }
+.tpfq .tpfq-title { margin: 0; color: var(--tpfq-title); font-size: 20px; font-weight: 400; line-height: 1.8; }
+.tpfq .tpfq-sub { margin: 4px 0 0; color: var(--tpfq-sub); font-size: 14px; line-height: 1.9; }
+
+/* ---------- Card ---------- */
+
+.tpfq--card .tpfq-box {
+	padding: var(--tpfq-card-pad);
+	border: 1px solid var(--tpfq-card-line);
+	border-radius: var(--tpfq-card-radius);
+	background: var(--tpfq-card-bg);
+}
+
+.tpfq-list { display: flex; flex-direction: column; gap: var(--tpfq-gap); }
+
+/* ---------- Item ---------- */
+
+.tpfq .tpfq-item {
+	margin: 0;
+	padding: 0;
+	border: 1px solid var(--tpfq-item-line);
+	border-radius: var(--tpfq-item-radius);
+	background: var(--tpfq-item-bg);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .04);
+	transition: background-color .3s, border-color .3s, box-shadow .3s;
+}
+.tpfq .tpfq-item[open] {
+	border-color: color-mix(in srgb, var(--tpfq-accent) 28%, transparent);
+	background: var(--tpfq-item-bg-open);
+	box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--tpfq-deep) 30%, transparent);
+}
+
+.tpfq .tpfq-q {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 0;
+	padding: 14px 18px;
+	border-radius: inherit;
+	color: var(--tpfq-q);
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.75;
+	list-style: none;
+	cursor: pointer;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	transition: color .2s;
+}
+.tpfq .tpfq-q::-webkit-details-marker { display: none; }
+.tpfq .tpfq-q::marker { content: ''; }
+.tpfq .tpfq-q:focus { outline: none; }
+.tpfq .tpfq-q:focus-visible { outline: 2px solid var(--tpfq-accent); outline-offset: 2px; }
+.tpfq-q__text { flex: 1; min-width: 0; }
+.tpfq .tpfq-item[open] .tpfq-q { color: var(--tpfq-ink); }
+@media (hover: hover) {
+	.tpfq .tpfq-item:not([open]):hover { border-color: color-mix(in srgb, var(--tpfq-accent) 22%, transparent); }
+	.tpfq .tpfq-item:not([open]) .tpfq-q:hover { color: var(--tpfq-accent); }
+}
+
+.tpfq-num {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border: 1px solid var(--tpfq-item-line);
+	border-radius: 12px;
+	background: #fff;
+	color: var(--tpfq-accent);
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1;
+	transition: background-color .3s, border-color .3s, color .3s;
+}
+.tpfq-item[open] .tpfq-num { border-color: var(--tpfq-accent); background: var(--tpfq-accent); color: #fff; }
+
+/* + that turns into − */
+.tpfq-toggle {
+	position: relative;
+	flex: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--tpfq-accent) 10%, transparent);
+	transition: background-color .3s, rotate .3s;
+}
+.tpfq-toggle::before,
+.tpfq-toggle::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 12px;
+	height: 2px;
+	margin: -1px 0 0 -6px;
+	border-radius: 2px;
+	background: var(--tpfq-accent);
+	transition: rotate .3s ease, background-color .3s;
+}
+.tpfq-toggle::after { rotate: 90deg; }
+.tpfq-item[open] .tpfq-toggle { background: var(--tpfq-accent); rotate: 180deg; }
+.tpfq-item[open] .tpfq-toggle::before,
+.tpfq-item[open] .tpfq-toggle::after { background: #fff; }
+.tpfq-item[open] .tpfq-toggle::after { rotate: 0deg; }
+
+/* ---------- Answer ---------- */
+
+.tpfq .tpfq-a {
+	margin: 0 18px;
+	padding: 14px 0 18px;
+	padding-inline-start: 52px; /* under the question text, past the number */
+	border-top: 1px dashed color-mix(in srgb, var(--tpfq-accent) 22%, var(--tpfq-item-line));
+	color: var(--tpfq-a);
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 2;
+}
+.tpfq--no-num .tpfq-a { padding-inline-start: 0; }
+.tpfq-item[open] .tpfq-a { animation: tpfq-in .35s ease both; }
+.tpfq-a > :first-child { margin-top: 0; }
+.tpfq-a > :last-child { margin-bottom: 0; }
+.tpfq-a p { margin: 0 0 .75em; }
+.tpfq-a ul,
+.tpfq-a ol { margin: 0 0 .75em; padding-inline-start: 1.25em; }
+.tpfq-a li { margin-bottom: .25em; }
+.tpfq-a strong,
+.tpfq-a b { color: var(--tpfq-q); font-weight: 700; }
+.tpfq .tpfq-a a { color: var(--tpfq-accent); text-decoration: underline; text-underline-offset: 4px; }
+
+@keyframes tpfq-in {
+	from { opacity: 0; transform: translateY(-4px); }
+	to { opacity: 1; transform: none; }
+}
+
+.tpfq-item::details-content {
+	block-size: 0;
+	overflow: clip;
+	transition: block-size .35s ease, content-visibility .35s allow-discrete;
+}
+.tpfq-item[open]::details-content { block-size: auto; }
+
+/* ---------- "Still have a question?" ---------- */
+
+.tpfq-cta {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-top: 20px;
+	padding: 16px 18px;
+	border: 1px solid var(--tpfq-cta-line);
+	border-radius: 20px;
+	background: var(--tpfq-cta-bg);
+}
+.tpfq-cta__icon {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 16px;
+	background: var(--tpfq-cta-icon-bg);
+	color: var(--tpfq-cta-icon);
+	font-size: 26px;
+}
+.tpfq-cta__body { flex: 1; min-width: 0; }
+.tpfq .tpfq-cta__title { margin: 0; color: var(--tpfq-cta-title); font-size: 15px; font-weight: 700; line-height: 1.8; }
+.tpfq .tpfq-cta__text { margin: 0; color: var(--tpfq-muted); font-size: 13px; line-height: 1.9; }
+
+.tpfq .tpfq-cta__btn:is(*, :hover, :focus, :visited) {
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--tpfq-btn-bg);
+	color: var(--tpfq-btn);
+	box-shadow: none;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color .2s;
+}
+.tpfq .tpfq-cta__btn .tpfq-svg { font-size: 20px; }
+@media (hover: hover) {
+	.tpfq .tpfq-cta__btn:hover { background: var(--tpfq-btn-bg-h); }
+}
+.tpfq .tpfq-cta__btn:focus-visible { outline: 2px solid var(--tpfq-btn-bg); outline-offset: 2px; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 767px) {
+	.tpfq { --tpfq-card-pad: 10px; --tpfq-card-radius: 22px; --tpfq-gap: 8px; --tpfq-head-gap: 14px; }
+	.tpfq .tpfq-title { font-size: 18px; }
+	.tpfq .tpfq-q { gap: 10px; padding: 12px; font-size: 15px; line-height: 1.8; }
+	.tpfq-num { width: 28px; height: 28px; border-radius: 9px; font-size: 13px; }
+	.tpfq-toggle { width: 26px; height: 26px; }
+	.tpfq-toggle::before,
+	.tpfq-toggle::after { width: 10px; margin-left: -5px; }
+	.tpfq .tpfq-a { margin: 0 12px; padding-top: 12px; padding-bottom: 14px; padding-inline-start: 0; font-size: 14px; line-height: 1.95; }
+	.tpfq-cta { flex-wrap: wrap; padding: 14px; }
+	.tpfq-cta__icon { width: 42px; height: 42px; border-radius: 14px; font-size: 22px; }
+	.tpfq .tpfq-cta__btn:is(*, :hover, :focus, :visited) { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.tpfq *,
+	.tpfq *::before,
+	.tpfq *::after { transition: none !important; animation: none !important; }
+	/* Its own rule: a browser that does not know the pseudo-element drops the whole rule. */
+	.tpfq-item::details-content { transition: none !important; }
+}

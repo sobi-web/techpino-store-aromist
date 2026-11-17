@@ -1,0 +1,10 @@
+.ahi-admin__preview { display: none; }
+.ahi-admin.has-image .ahi-admin__preview { display: block; }
+.ahi-admin__img { display: block; max-width: 100%; height: auto; border-radius: 4px; }
+.ahi-admin__remove { display: none; color: #b32d2e; }
+.ahi-admin.has-image .ahi-admin__remove { display: inline; }
+.ahi-admin.has-image .ahi-admin__add { display: none; }
+
+.column-ahi_hover { width: 52px; text-align: center !important; }
+.ahi-col-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+.ahi-col-empty { color: #a7aaad; }

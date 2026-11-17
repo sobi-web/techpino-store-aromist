@@ -1,0 +1,107 @@
+/* Aromist Hover Image – front-end */
+.ahi {
+	--ahi-ratio: auto;
+	--ahi-radius: 0px;
+	--ahi-dur: 350ms;
+	--ahi-hover-bg: #fff;
+	--ahi-hover-fit: contain;
+	--ahi-btn-bg: rgba(255, 255, 255, .92);
+	--ahi-btn-color: #1a1a1a;
+	position: relative;
+	display: block;
+	width: var(--ahi-width, 100%);
+	max-width: 100%;
+	overflow: hidden;
+	border-radius: var(--ahi-radius);
+	isolation: isolate;
+}
+
+.ahi__frame {
+	position: relative;
+	display: block;
+	aspect-ratio: var(--ahi-ratio);
+	overflow: hidden;
+}
+
+.ahi .ahi__main {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+.ahi .ahi__hover {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: var(--ahi-hover-fit);
+	background: var(--ahi-hover-bg);
+	border-radius: 0;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: opacity var(--ahi-dur) ease, transform var(--ahi-dur) cubic-bezier(.2, .7, .2, 1), visibility 0s linear var(--ahi-dur);
+}
+
+.ahi--fx-zoom .ahi__hover { transform: scale(1.06); }
+.ahi--fx-slide .ahi__hover { transform: translateY(100%); opacity: 1; }
+
+.ahi.is-hover .ahi__hover.is-loaded,
+.ahi.is-active .ahi__hover.is-loaded {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+	transition-delay: 0s;
+}
+
+/* دکمه‌ی اطلاعات برای دستگاه‌های لمسی */
+.ahi__info {
+	position: absolute;
+	top: 8px;
+	inset-inline-end: 8px;
+	z-index: 2;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: var(--ahi-btn-bg);
+	color: var(--ahi-btn-color);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.ahi__info::before { /* ناحیه‌ی لمس بزرگ‌تر از ظاهر دکمه */
+	content: "";
+	position: absolute;
+	inset: -6px;
+}
+
+.ahi__info svg { width: 20px; height: 20px; }
+.ahi__icon-close { display: none; }
+.ahi.is-active .ahi__icon-info { display: none; }
+.ahi.is-active .ahi__icon-close { display: block; }
+
+@media (hover: none) {
+	.ahi--mobile-button.ahi--has-hover .ahi__info { display: inline-flex; }
+}
+
+.ahi__info:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ahi .ahi__hover { transition: none; transform: none; }
+}

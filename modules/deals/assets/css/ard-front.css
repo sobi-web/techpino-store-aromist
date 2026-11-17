@@ -1,0 +1,250 @@
+/* Aromist Deals — sale prices on every page, size tags, product page timer. */
+
+/* ---------- Sale price: gold «۱۵٪» box + old price over the new one ---------- */
+.ard-price {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	max-width: 100%;
+	direction: rtl;
+	vertical-align: middle;
+	line-height: 1.25;
+	white-space: nowrap;
+	font-feature-settings: "ss02"; /* IRANYekanX: Persian digits */
+}
+.ard-badge {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: var(--ard-badge-w, 32px);
+	height: var(--ard-badge-h, 38px);
+	padding: 0 4px;
+	box-sizing: border-box;
+	border-radius: var(--ard-badge-r, 7px);
+	background: var(--ard-badge-bg, #D7B56A);
+	color: var(--ard-badge-fg, #1D1D1B);
+	font-size: var(--ard-badge-fs, 14px);
+	font-weight: 500;
+	line-height: 1;
+}
+.ard-badge__in {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3px;
+}
+.ard-badge__n {
+	display: inline-flex;
+	align-items: baseline;
+	direction: ltr;
+	unicode-bidi: isolate;
+}
+.ard-badge__p { font-size: .8em; margin-left: 1px; }
+.ard-badge__upto { font-size: 10px; font-weight: 400; opacity: .8; }
+.ard-badge--upto { --ard-badge-h: 40px; }
+
+.ard-amounts {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 2px;
+	min-width: 0;
+}
+.ard-amounts del,
+.ard-amounts del * {
+	color: var(--ard-del, #8C8C8C) !important;
+}
+.ard-amounts del {
+	display: block;
+	font-size: var(--ard-del-fs, 13px);
+	font-weight: 400;
+	line-height: 1.2;
+	text-decoration: line-through !important;
+	text-decoration-thickness: 1.5px !important;
+	text-decoration-color: var(--ard-del-line, #C8524E) !important;
+	opacity: 1;
+}
+.ard-amounts del .woocommerce-Price-currencySymbol { display: none; }
+.ard-amounts ins,
+.ard-amounts .ard-now {
+	display: block;
+	background: none;
+	color: inherit;
+	font-size: 1em;
+	font-weight: inherit;
+	line-height: 1.3;
+	text-decoration: none;
+}
+/* The shop's card template pulls `ins` up 12px (for WooCommerce's own sale markup); themes make them inline. */
+.ard-amounts del,
+.ard-amounts ins,
+.ard-amounts .ard-now {
+	float: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: block !important;
+}
+.ard-amounts .woocommerce-Price-currencySymbol { font-size: .8em; }
+.ard-amounts ins .woocommerce-Price-currencySymbol { margin-inline-start: 4px; }
+.ard-amounts bdi { white-space: nowrap; }
+.ard-price .screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Digits setting. «all»: every price on the site (the text stays Latin; IRANYekanX draws Persian digits). */
+body.ard-digits-all .woocommerce-Price-amount,
+body.ard-digits-all .woocommerce-Price-amount *,
+body.ard-digits-all .on-sale { font-feature-settings: "ss02" !important; }
+body.ard-digits-latin .ard-price,
+body.ard-digits-latin .ard-price *,
+body.ard-digits-latin .ard-sw-tag,
+body.ard-digits-latin .ard-clock,
+body.ard-digits-latin .ard-pill,
+body.ard-digits-latin .ard-size b { font-feature-settings: normal !important; }
+
+/* Cart page, checkout table, mini-cart: smaller badge; the unit price keeps old + new on one line. */
+.ard-price--cart {
+	--ard-badge-w: 26px; --ard-badge-h: 30px; --ard-badge-fs: 11px; --ard-badge-r: 6px; --ard-del-fs: 11px;
+	gap: 6px;
+	vertical-align: middle;
+}
+.ard-price--cart .ard-amounts { align-items: flex-end; }
+.ard-price--inline .ard-amounts { flex-direction: row; align-items: baseline; gap: 6px; }
+.ard-price--inline .ard-amounts del,
+.ard-price--inline .ard-amounts ins { display: inline !important; }
+.ard-price--inline .ard-amounts del { font-size: .85em; }
+/* Mini-cart «unit × qty» line: just the unit price (the line total shows the discount). */
+.tpmc-item__unit .ard-price--inline del { display: none !important; }
+/* The cart snippet's own «٪» box next to the unit price is replaced by the plugin's. */
+.ard-price--inline ~ .on-sale { display: none !important; }
+
+/* Inside the site's slim price rows (search results, mini lists) keep it small. */
+.price .ard-price, .my-price .ard-price { font-size: inherit; }
+
+/* ---------- Deals widget hidden while there are too few deals (needed before its own CSS loads) ---------- */
+.ard-empty { display: none !important; }
+.elementor-widget-ard_deals.ard-is-empty { display: none !important; }
+.e-con:has(> .ard-hide-parent.ard-is-empty),
+.e-con:has(> .e-con-inner > .ard-hide-parent.ard-is-empty),
+.elementor-section:has(> .elementor-container > .elementor-column > .elementor-widget-wrap > .ard-hide-parent.ard-is-empty) {
+	display: none !important;
+}
+
+/* ---------- Product cards: «٪» on discounted size circles (Code Snippets «aromist_volumes») ---------- */
+body.ard-mark-sizes .arv-dot:not(.is-out)[data-price*="ard-badge"] { position: relative; }
+body.ard-mark-sizes .arv-dot:not(.is-out)[data-price*="ard-badge"]::after {
+	content: "٪";
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: var(--ard-badge-bg, #D7B56A);
+	color: var(--ard-badge-fg, #1D1D1B);
+	box-shadow: 0 0 0 2px #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 16px;
+	text-align: center;
+	pointer-events: none;
+}
+
+/* ---------- Product page: tag on discounted size buttons ---------- */
+.ard-sw-host { position: relative; overflow: visible !important; }
+.ard-sw-tag {
+	position: absolute;
+	top: -8px;
+	left: -6px;
+	z-index: 3;
+	display: inline-flex;
+	align-items: center;
+	height: 18px;
+	padding: 0 6px;
+	border-radius: 9px;
+	background: var(--ard-badge-bg, #D7B56A);
+	color: var(--ard-badge-fg, #1D1D1B);
+	box-shadow: 0 0 0 2px #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1;
+	font-feature-settings: "ss02";
+	pointer-events: none;
+	white-space: nowrap;
+}
+
+/* ---------- Product page: countdown under the price ---------- */
+.ard-pdp-timer,
+body.single-product form.cart .ard-pdp-timer {
+	order: 2 !important; /* right under the price (the site's form CSS orders: qty 1, price 2, button 3) */
+	flex: 0 0 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
+	margin: 0;
+	padding: 10px 12px 12px;
+	box-sizing: border-box;
+	border-radius: 14px;
+	background: #FFF4E0;
+	color: #7A5B16;
+	font-size: 13px;
+	line-height: 1.4;
+}
+.ard-pdp-timer[hidden] { display: none !important; }
+.ard-pdp-timer__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+.ard-pdp-timer__label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+.ard-pdp-timer__label svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.ard-pdp-timer .ard-clock {
+	font-size: 14px;
+	font-weight: 700;
+	color: #5E4510;
+	white-space: nowrap;
+	font-feature-settings: "ss02";
+}
+.ard-pdp-timer .ard-timer__bar { background: rgba(215, 181, 106, .28); }
+
+/* Progress bar (shared with the deal cards). */
+.ard-timer__bar {
+	position: relative;
+	display: block;
+	flex: 1 1 auto;
+	height: 6px;
+	min-width: 40px;
+	border-radius: 99px;
+	background: #E6E8EB;
+	overflow: hidden;
+	direction: ltr;
+}
+.ard-timer__bar i {
+	display: block;
+	height: 100%;
+	width: 0;
+	border-radius: inherit;
+	background: var(--ard-gold, #D7B56A);
+	transition: width 1s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+	.ard-timer__bar i { transition: none; }
+}

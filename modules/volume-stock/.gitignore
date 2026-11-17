@@ -1,0 +1,11 @@
+# Build output (bin/build-zip.sh)
+/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log

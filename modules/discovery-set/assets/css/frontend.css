@@ -1,0 +1,197 @@
+/* Discovery set — product form (phase 1). Colors follow the shop's cart snippet palette. */
+.ads-form {
+	--ads-primary: #009879;
+	--ads-primary-light: #b3e0d7;
+	--ads-black: #221e1f;
+	--ads-gray: #707070;
+	--ads-line: #dadada;
+	--ads-bg: #f8fafc;
+	--ads-danger: #ff0408;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	direction: rtl;
+	color: var(--ads-black);
+}
+
+.ads-perfumes {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 8px;
+}
+
+.ads-perfume__link {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
+
+.ads-perfume__image {
+	display: block;
+	aspect-ratio: 1 / 1;
+	border-radius: 12px;
+	overflow: hidden;
+	background: var(--ads-bg);
+	border: 1px solid var(--ads-line);
+}
+
+.ads-perfume__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.ads-perfume__name {
+	display: block;
+	margin-top: 6px;
+	font-size: 12px;
+	line-height: 1.6;
+	text-align: center;
+	overflow-wrap: anywhere;
+}
+
+.ads-volumes {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+.ads-volumes__title {
+	font-weight: 700;
+	font-size: 14px;
+	margin-bottom: 8px;
+	padding: 0;
+}
+
+.ads-volumes__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.ads-volume {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 44px;
+	padding: 8px 16px;
+	border: 1px solid var(--ads-line);
+	border-radius: 12px;
+	background: #fff;
+	cursor: pointer;
+	transition: border-color .15s ease, background-color .15s ease;
+}
+
+.ads-volume input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.ads-volume:has(input:checked) {
+	border-color: var(--ads-primary);
+	background: var(--ads-bg);
+	box-shadow: inset 0 0 0 1px var(--ads-primary);
+}
+
+.ads-volume:has(input:focus-visible) {
+	outline: 2px solid var(--ads-primary);
+	outline-offset: 2px;
+}
+
+.ads-volume__ml {
+	font-weight: 700;
+}
+
+.ads-volume__state {
+	font-size: 12px;
+	color: var(--ads-danger);
+}
+
+.ads-volume.is-unavailable {
+	cursor: not-allowed;
+	opacity: .55;
+}
+
+.ads-total {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 12px 16px;
+	border-radius: 12px;
+	background: var(--ads-bg);
+}
+
+.ads-total__label {
+	flex: 0 0 auto;
+	color: var(--ads-gray);
+	font-size: 14px;
+	white-space: nowrap;
+}
+
+.ads-total__price {
+	text-align: end;
+}
+
+.ads-total__price del {
+	color: var(--ads-gray);
+	font-size: .85em;
+	margin-inline-end: 6px;
+}
+
+.ads-total__price ins {
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.ads-actions {
+	display: flex;
+	flex-wrap: wrap; /* Page builders that make the button full width (Elementor) put it on its own line. */
+	align-items: stretch;
+	gap: 8px;
+}
+
+.ads-actions .quantity {
+	flex: 0 0 auto;
+}
+
+.ads-actions .ads-add {
+	flex: 1 1 auto;
+	min-height: 48px;
+	border-radius: 12px;
+}
+
+.ads-unavailable {
+	margin: 0;
+	color: var(--ads-danger);
+}
+
+.ads-price-volume {
+	color: #707070;
+	font-weight: 400;
+}
+
+@media (max-width: 480px) {
+	.ads-perfumes {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ads-volume {
+		transition: none;
+	}
+}
+
+.ads-volume-fixed {
+	margin: 0;
+	padding: 8px 14px;
+	border-radius: 12px;
+	background: var(--ads-bg);
+	font-size: 14px;
+	font-weight: 700;
+}

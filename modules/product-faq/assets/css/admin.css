@@ -1,0 +1,129 @@
+/* سوالات متداول محصول تکپینو — product screen and settings page. */
+
+.tpfq-mb,
+.tpfq-settings { --tpfq-accent: #009879; }
+
+/* ---------- question rows ---------- */
+
+.tpfq-rep__list { display: flex; flex-direction: column; gap: 10px; }
+.tpfq-rep__row {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 12px;
+	border: 1px solid #e2e6ea;
+	border-radius: 10px;
+	background: #f9fafc;
+}
+.tpfq-rep__row:focus-within { border-color: var(--tpfq-accent); background: #fff; box-shadow: 0 0 0 1px var(--tpfq-accent); }
+.tpfq-rep__handle { flex: none; display: grid; place-items: center; width: 22px; height: 36px; color: #a7aaad; cursor: grab; }
+.tpfq-rep__handle svg { fill: currentColor; }
+.tpfq-rep__handle:hover { color: #50575e; }
+.tpfq-rep__num {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	margin-top: 3px;
+	border-radius: 8px;
+	background: #e6f5f2;
+	color: var(--tpfq-accent);
+	font-weight: 700;
+}
+.tpfq-rep__fields { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tpfq-rep__fields input,
+.tpfq-rep__fields textarea { width: 100%; margin: 0; }
+.tpfq-rep__fields input { min-height: 36px; font-weight: 600; }
+.tpfq-rep__fields textarea { min-height: 70px; resize: vertical; line-height: 1.9; }
+.tpfq-rep__remove {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 34px;
+	height: 34px;
+	margin-top: 1px;
+	padding: 0;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background: none;
+	color: #a7aaad;
+	cursor: pointer;
+}
+.tpfq-rep__remove:hover,
+.tpfq-rep__remove:focus { border-color: #f0c5c5; background: #fcf0f1; color: #d63638; }
+
+.tpfq-rep__ph { height: 120px; border: 2px dashed #c3c4c7; border-radius: 10px; background: #fff; visibility: visible !important; }
+.ui-sortable-helper.tpfq-rep__row { box-shadow: 0 10px 24px rgba(0, 0, 0, .12); }
+
+.tpfq-rep__empty { display: none; align-items: center; gap: 8px; padding: 16px; border: 1px dashed #c3c4c7; border-radius: 10px; color: #646970; }
+.tpfq-rep.is-empty .tpfq-rep__empty { display: flex; }
+.tpfq-rep.is-empty .tpfq-rep__list { display: none; }
+
+.tpfq-rep .tpfq-rep__add { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; }
+.tpfq-rep__add .dashicons { font-size: 18px; width: 18px; height: 18px; }
+
+/* ---------- product screen ---------- */
+
+.tpfq-mb { padding: 4px 0 6px; }
+.tpfq-mb__mode { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.tpfq-mb__mode label { font-weight: 600; }
+.tpfq-mb__mode select { min-width: 260px; }
+.tpfq-mb__status {
+	margin: 12px 0 0;
+	padding: 10px 12px;
+	border-radius: 8px;
+	background: #e6f5f2;
+	color: #00634f;
+	font-weight: 600;
+}
+.tpfq-mb__status[data-source="default"] { background: #fcf3e3; color: #7a5410; }
+.tpfq-mb__status[data-source="none"] { background: #f0f0f1; color: #50575e; }
+.tpfq-mb__help { margin: 8px 0 0; }
+.tpfq-mb:not([data-mode=""]) .tpfq-mb__help { display: none; }
+
+.tpfq-mb__own { margin-top: 18px; padding-top: 14px; border-top: 1px solid #f0f0f1; }
+.tpfq-mb__own h4 { margin: 0 0 4px; }
+.tpfq-mb__own > .description { margin: 0 0 12px; }
+/* Kept (and saved) but out of the way while the product shows only the defaults, or nothing. */
+.tpfq-mb:is([data-mode="default"], [data-mode="none"]) .tpfq-mb__own { display: none; }
+
+.tpfq-mb__defaults { margin-top: 16px; padding: 10px 12px; border: 1px solid #f0e2c2; border-radius: 8px; background: #fffaf0; }
+.tpfq-mb__defaults summary { cursor: pointer; font-weight: 600; color: #7a5410; }
+.tpfq-mb__defaults ol { margin: 10px 22px 0 0; color: #50575e; }
+.tpfq-mb[data-mode="custom"] .tpfq-mb__defaults,
+.tpfq-mb[data-mode="none"] .tpfq-mb__defaults { display: none; }
+
+/* ---------- settings page ---------- */
+
+.tpfq-settings .tpfq-card {
+	max-width: 900px;
+	margin: 16px 0;
+	padding: 4px 22px 20px;
+	border: 1px solid #dcdcde;
+	border-radius: 10px;
+	background: #fff;
+}
+.tpfq-settings .tpfq-card > h2 { margin: 18px 0 6px; font-size: 16px; }
+.tpfq-settings .tpfq-card > .description { margin: 0 0 14px; }
+.tpfq-settings .tpfq-card .form-table { margin-top: 0; }
+
+.tpfq-scope { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.tpfq-scope__opt { font-weight: 500; }
+.tpfq-cats {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	max-height: 260px;
+	margin: -2px 24px 4px 0;
+	padding: 10px 12px;
+	overflow: auto;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	background: #f9fafc;
+}
+.tpfq-cats.is-off { opacity: .45; pointer-events: none; }
+
+.tpfq-note { margin-top: 16px; padding: 10px 14px; border-radius: 8px; background: #f6f7f7; color: #50575e; }
+.tpfq-note p { margin: 4px 0; }
+.tpfq-facts { font-weight: 600; color: #1d2327; }
