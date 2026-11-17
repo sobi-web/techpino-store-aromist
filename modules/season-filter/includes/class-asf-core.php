@@ -117,11 +117,53 @@ final class ASF_Core {
 		foreach ( $pills as $pill ) {
 			$taxonomies[ $pill['taxonomy'] ] = true;
 		}
+		$pill = $pills[ $index ];
 		return array(
-			'taxonomy'   => $pills[ $index ]['taxonomy'],
-			'term'       => $pills[ $index ]['term'],
+			'taxonomy'   => $pill['taxonomy'],
+			'terms'      => self::expand_terms( $pill['taxonomy'], $pill['term'], $pill['label'] ),
 			'taxonomies' => array_keys( $taxonomies ),
 		);
+	}
+
+	/**
+	 * ترم دکمه به‌علاوهٔ ترم‌های ترکیبی هم‌ریشه («خنک» ← «خنک و چوبی»، «خنک و تلخ»، ...).
+	 *
+	 * @param string $taxonomy تاکسونومی.
+	 * @param int    $term_id  ترم انتخاب‌شده در دکمه.
+	 * @param string $label    برچسب دکمه؛ اگر ترم حذف شده باشد ریشه از همین گرفته می‌شود.
+	 * @return int[]
+	 */
+	public static function expand_terms( $taxonomy, $term_id, $label ) {
+		$term = get_term( (int) $term_id, $taxonomy );
+		$base = ( $term instanceof WP_Term ) ? $term->name : $label;
+		$ids  = array( (int) $term_id );
+		$all  = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+			)
+		);
+		if ( is_array( $all ) ) {
+			foreach ( $all as $candidate ) {
+				if ( self::name_matches( $candidate->name, $base ) ) {
+					$ids[] = (int) $candidate->term_id;
+				}
+			}
+		}
+		return array_values( array_unique( $ids ) );
+	}
+
+	/**
+	 * خود ریشه، یا ریشه + فاصله در ابتدای نام (تا «گرم» با «گرمسیری» جور نشود).
+	 *
+	 * @param string $name نام ترم.
+	 * @param string $base ریشه.
+	 * @return bool
+	 */
+	public static function name_matches( $name, $base ) {
+		$name = trim( (string) $name );
+		$base = trim( (string) $base );
+		return '' !== $base && ( $name === $base || 0 === strpos( $name, $base . ' ' ) );
 	}
 
 	/**
@@ -345,7 +387,7 @@ final class ASF_Core {
 		$tax_query[]       = array(
 			'taxonomy' => $selection['taxonomy'],
 			'field'    => 'term_id',
-			'terms'    => array( (int) $selection['term'] ),
+			'terms'    => array_map( 'intval', (array) $selection['terms'] ),
 		);
 		$args['tax_query'] = $tax_query;
 

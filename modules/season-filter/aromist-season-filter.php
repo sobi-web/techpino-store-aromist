@@ -3,7 +3,7 @@
  * Module:       Techpino Season Filter – فیلتر AJAX کاروسل محصولات
  * Plugin URI:        https://aromistshop.com
  * Description:       ویجت المنتور «فیلتر AJAX کاروسل» (گرم / خنک / چهار فصل): سه دکمه بالای کاروسل محصولات که بدون ری‌لود، اسلایدهای همان کاروسل Loop Carousel را عوض می‌کند. جایگزین تب‌های سنگین.
- * Version:           0.2.0
+ * Version:           0.3.0
  * Author:            Techpino
  * Requires at least: 6.4
  * Requires PHP:      7.4
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ASF_VERSION', '0.2.0' );
+define( 'ASF_VERSION', '0.3.0' );
 define( 'ASF_FILE', __FILE__ );
 define( 'ASF_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ASF_URL', plugin_dir_url( __FILE__ ) );

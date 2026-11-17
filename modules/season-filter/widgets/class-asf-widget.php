@@ -95,7 +95,7 @@ class ASF_Widget extends Widget_Base {
 		$map = array(
 			array( 'خنک', 'pa_scent-type' ),
 			array( 'گرم', 'pa_scent-type' ),
-			array( 'چهار فصل', 'pa_for-the-season' ),
+			array( 'معتدل', 'pa_scent-type' ),
 		);
 		$out = array();
 		foreach ( $map as $row ) {
