@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       تکپینو – فروشگاه و محصول
  * Description:       ماژول‌های فروشگاهی تکپینو در یک افزونه: موجودی حجمی، دیسکاوری ست، تخفیف‌های ویژه، تصویر هاور، صفحه‌ی محصول موبایل، فیلتر فصلی، سوالات متداول، سبد خرید کشویی، جستجوی زنده و اسنیپت‌های سایت (به جای Code Snippets).
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            تکپینو
  * Requires Plugins:  woocommerce
  * Text Domain:       techpino-store
